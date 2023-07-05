@@ -12,8 +12,8 @@
     rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="<c:url value='/css/login/style.css'/>">
-    <link rel="stylesheet" href="css/login/topbar.css">
+    <link rel="stylesheet" href="<c:url value='/css/auth/style.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/auth/topbar.css'/>">
     <title>Foodle</title>
 
   </head>
@@ -30,7 +30,7 @@
       <form method="post" class="LoginForm">
         <div class="Name">Foodle</div>
         <div id="msg"></div>
-        <input class="Input-Form" type="text" name="username" placeholder="ID를 입력하세요" autofocus>
+        <input class="Input-Form" type="text" name="id" placeholder="ID를 입력하세요" autofocus>
         <input class="Input-Form" type="password" name="password" placeholder="비밀번호를 입력하세요">
         <div class="LoginRegister">
           <button type="submit" class="btn btn-warning" id="loginbutton">로그인</button>

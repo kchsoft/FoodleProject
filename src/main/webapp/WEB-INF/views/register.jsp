@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -10,8 +12,8 @@
     rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="static/register.css">
-    <link rel="stylesheet" href="static/topbar.css">
+    <link rel="stylesheet" href="<c:url value='/css/auth/register.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/auth/topbar.css'/> ">
     <title>Foodle</title>
     
   </head>
@@ -41,7 +43,7 @@
         <input class="Input-Form" type="text" name="email" placeholder="example@site.com"> 
 
         <label for="">생일</label>
-        <input class="Date-Form" type="date" name="birth" value="{{ datetime.today().date().isoformat() }}"> 
+        <input class="Date-Form" type="date" name="birth" value="">
 
         <div class="Register">
           <button type="button" class="btn btn-warning" id="registerbutton" onclick="checkForm()">회원가입</button>
