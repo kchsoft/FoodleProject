@@ -4,36 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.foodle.app.Dao.UserMapper">
-    <select id="selectOneIdPassword" parameterType="UserDto" resultType="UserDto">
+    <select id="selectIdPassword" parameterType="UserDto" resultType="UserDto">
         SELECT id , password
-        FROM user
-        WHERE id = #{id} and password = #{password}
+        from user
+        where id = #{id} and password = #{password}
     </select>
 
-    <select id="selectOneId" parameterType="String" resultType="String">
+    <select id="selectId" parameterType="String" resultType="String">
         SELECT id
-        FROM user
-        WHERE id = #{id}
+        from user
+        where id = #{id}
     </select>
 
-    <select id="selectListPassword" parameterType="String" resultType="String">
+    <select id="selectPassword" parameterType="String" resultType="String">
         SELECT password
-        FROM user
-        WHERE password = #{password}
+        from user
+        where password = #{password}
     </select>
 
-    <delete id="deleteOneUser" parameterType="UserDto">
+    <delete id="deleteAll">
         DELETE FROM user
-        WHERE id = #{id} and password = #{password}
     </delete>
-
-    <delete id="deleteTestUser">
-        DELETE FROM user
-        WHERE name LIKE 'test%';
-    </delete>
-
-    <insert id="insertUserInfo" parameterType="UserDto">
-        INSERT INTO user (name,age,id,password,email,birthday,user_num)
-        VALUES (#{name},#{age},#{id},#{password},#{email},#{birthday},#{user_num});
-    </insert>
 </mapper>

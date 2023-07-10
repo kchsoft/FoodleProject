@@ -5,8 +5,6 @@ import com.foodle.app.Domain.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserService {
     final int VALID_INFO = 2; // ID , PASSWORD is valid.
@@ -21,10 +19,10 @@ public class UserService {
 
 //      Login Fail - 1.Invalid Info or 2.Null info
         String dbId = userDao.selectOneId(LoginUser.getId());
-        List<String> dbPassword = userDao.selectListPassword(LoginUser.getPassword());
+        String dbPassword = userDao.selectOnePassword(LoginUser.getPassword());
 
 //      1. Invalid
-        if(dbId != null || dbPassword.size() > 0) return INVALID_INFO;
+        if(dbId != null || dbPassword != null) return INVALID_INFO;
 
 //      2. Null Info
         return NULL_INFO;

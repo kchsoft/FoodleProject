@@ -9,24 +9,14 @@ public class UserDto {
     String password;
     String email;
     Date birthday;
-   static int user_num = 0;
+   static int user_num;
 
     UserDto() {}
 
     public UserDto(String id, String password) {
         this.id = id;
         this.password = password;
-        this.user_num++;
     }
-
-    public UserDto(String name, String id, String password) {
-        this.name = name;
-        this.id = id;
-        this.password = password;
-        this.user_num++;
-
-    }
-
     public UserDto(String name, int age, String id, String password, String email, Date birthday, int user_num) {
         this.name = name;
         this.age = age;
@@ -34,7 +24,7 @@ public class UserDto {
         this.password = password;
         this.email = email;
         this.birthday = birthday;
-        this.user_num++;
+        this.user_num = user_num;
     }
 
     public String getName() {
