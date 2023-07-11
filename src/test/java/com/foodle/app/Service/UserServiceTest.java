@@ -17,7 +17,7 @@ public class UserServiceTest {
     @Autowired
     UserDao userDao;
     @Test
-    public void userCheck() {
+    public void isValidUserInfo() {
         userDao.deleteTestUser();
         String id = "test1";
         String password = "1234";

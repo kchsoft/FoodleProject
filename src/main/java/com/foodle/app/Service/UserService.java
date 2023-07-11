@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-    public int userCheck(UserDto LoginUser) {
+    public int isValidLoginInfo(UserDto LoginUser) {
 //      Login Success - Valid Info
         if (userDao.selectOneIdPassword(LoginUser) != null) return VALID_INFO;
 

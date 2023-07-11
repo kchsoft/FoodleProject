@@ -12,8 +12,8 @@
     rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="<c:url value='/css/regiseter/register.css'/>">
-    <link rel="stylesheet" href="<c:url value='/css/regiseter/topbar.css'/> ">
+    <link rel="stylesheet" href="<c:url value='/css/register/register.css'/>">
+    <link rel="stylesheet" href="<c:url value='/css/register/topbar.css'/> ">
     <title>Foodle</title>
     
   </head>

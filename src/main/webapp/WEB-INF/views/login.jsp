@@ -30,9 +30,12 @@
       <form method="post" class="LoginForm">
         <div class="Name">Foodle</div>
         <div id="msg"></div>
-        <input class="Input-Form" type="text" name="id" placeholder="ID를 입력하세요" autofocus>
+        <input class="Input-Form" type="text" name="id" placeholder="ID를 입력하세요" value="${cookie.id.value}" autofocus >
         <input class="Input-Form" type="password" name="password" placeholder="비밀번호를 입력하세요">
         <div class="LoginRegister">
+          <div class="idCheckbox">
+            <input type="checkbox" name="idStore" value="on" ${empty cookie.id.value ? "" : "checked"}> 아이디 기억
+          </div>
           <button type="submit" class="btn btn-warning" id="loginbutton">로그인</button>
           <a href="<c:url value='/register'/>" class="RegisterLink" id="registerlink">회원가입</a>
         </div>

@@ -35,20 +35,24 @@ body{
 .LoginRegister{
   display: flex;
   width: 400px;
-  justify-content: space-between;
-  margin-bottom: 60px;
+  height: 70px;
+  margin-bottom: 30px;
+  align-items: center;
+  justify-content: space-evenly;;
 }
 
 #registerlink{
-  margin-right: 108px;
   font-size: 15px;
 }
 
 #loginbutton{
-  margin-left: 108px;
+  margin-right: 45px;
   height: 20px;
   line-height: 1px;
   color: white;
+}
+
+#idStore{
 }
 
 #msg {

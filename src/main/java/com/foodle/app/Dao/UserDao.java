@@ -10,31 +10,31 @@ import java.util.List;
 @Repository
 public class UserDao{
     @Autowired
-    private SqlSession session;
+    private SqlSession dbSession;
     String namespace = "com.foodle.app.Dao.UserMapper.";
 
 
     public UserDto selectOneIdPassword(UserDto userDto){
-        return session.selectOne(namespace+"selectOneIdPassword", userDto);
+        return dbSession.selectOne(namespace+"selectOneIdPassword", userDto);
     }
 
     public String selectOneId(String id){
-        return session.selectOne(namespace+"selectOneId", id);
+        return dbSession.selectOne(namespace+"selectOneId", id);
     }
 
     public List<String> selectListPassword(String password){
-        return session.selectList(namespace+"selectListPassword", password);
+        return dbSession.selectList(namespace+"selectListPassword", password);
     }
 
     public int deleteOneUser(UserDto user){
-        return session.delete(namespace + "deleteOneUser",user);
+        return dbSession.delete(namespace + "deleteOneUser",user);
     }
 
     public void deleteTestUser(){ // delete All name = "test%"
-        session.delete(namespace + "deleteTestUser");
+        dbSession.delete(namespace + "deleteTestUser");
     }
 
     public int insertUserInfo(UserDto user) {
-        return session.insert(namespace + "insertUserInfo", user);
+        return dbSession.insert(namespace + "insertUserInfo", user);
     }
 }
