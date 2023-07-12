@@ -9,9 +9,13 @@ import java.util.List;
 
 @Repository
 public class UserDao{
-    @Autowired
     private SqlSession dbSession;
     String namespace = "com.foodle.app.Dao.UserMapper.";
+
+    @Autowired
+    UserDao(SqlSession dbSession) {
+        this.dbSession =dbSession;
+    }
 
 
     public UserDto selectOneIdPassword(UserDto userDto){

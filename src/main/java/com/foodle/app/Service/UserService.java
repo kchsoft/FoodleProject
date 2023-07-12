@@ -12,8 +12,12 @@ public class UserService {
     final int VALID_INFO = 2; // ID , PASSWORD is valid.
     final int INVALID_INFO = 1; // ID or PASSWORD is invalid.
     final int NULL_INFO = 0; // There is no ID and PASSWORD.
+    final UserDao userDao;
+
     @Autowired
-    UserDao userDao;
+    UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     public int isValidLoginInfo(UserDto LoginUser) {
 //      Login Success - Valid Info
@@ -28,5 +32,11 @@ public class UserService {
 
 //      2. Null Info
         return NULL_INFO;
+    }
+
+    public boolean isIdExist(String id){
+        String dbId = userDao.selectOneId(id);
+        if(dbId == null) return false;
+        return true;
     }
 }

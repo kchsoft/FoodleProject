@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@page session="false"%>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -23,7 +24,7 @@
           <li>Foodle</li>
           <li>Sign up for Foodle!</li>
       </ul>
-  </div>
+    </div>
     
       <form method="post" class="RegisterForm">
         <div class="Name">Foodle</div>
@@ -31,44 +32,43 @@
         <div id="avail-message" style="color:green"></div>
 
         <label for="">아이디</label>
-        <input class="Input-Form" type="text" name="username" placeholder="ID" autofocus>
+        <input class="Input-Form" type="text" name="id" placeholder="ID" autofocus required>
 
         <label for="">비밀번호</label>
-        <input input class="Input-Form" type="password" name="password" placeholder="비밀번호">
+        <input input class="Input-Form" type="password" name="password" placeholder="비밀번호" required>
 
         <label for="">이름</label>
-        <input class="Input-Form" type="text" name="name" placeholder="이름">
+        <input class="Input-Form" type="text" name="name" placeholder="이름" required>
 
         <label for="">이메일</label>
         <input class="Input-Form" type="text" name="email" placeholder="example@site.com"> 
 
         <label for="">생일</label>
-        <input class="Date-Form" type="date" name="birth" value="">
+        <input class="Date-Form" type="date" name="birthday" value="">
 
         <div class="Register">
           <button type="button" class="btn btn-warning" id="registerbutton" onclick="checkForm()">회원가입</button>
-          <button type="button" class="btn btn-warning" id="dpulicatebutton" onclick="checkId()">ID중복체크</button>
+          <button type="button" class="btn btn-warning" id="dpulicatebutton" onclick="idDupCheck()">ID중복체크</button>
           <a href="/auth/login" class="LoginLink" id="loginlink">로그인 화면</a>
         </div>
+
         <script>
-         function checkId() {
-            // username 변수에 id가 'username'인 요소의 값을 할당
-            var username = document.getElementsByName('username')[0].value;
-            // fetch 함수를 사용하여 'check_id' URL로 POST 요청을 보냄
-            fetch('check_id', {
+         function idDupCheck() {
+            var id = document.getElementsByName('id')[0].value;
+            fetch("register/idcheck", {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                // 요청 바디에 JSON 형식으로 username 값을 담아 보냄
-                body: JSON.stringify({ username: username })
+                headers: { 'Content-Type': 'text/plain; charset=UTF-8' },
+                body: id
             })
-            // 응답을 JSON 형식으로 파싱하여 처리
-            .then(response => response.json())
-            .then(data => {
-                // id가 'message'인 요소를 찾아 message 값을 할당
-                var messageElem = document.getElementById('error-message');
-                messageElem.innerText = data.message;
-            });
+            .then(response => response.text())
+            .then(message => {
+              alert("" + message);
+            })
+            .catch(function(error){
+              alert("ID Check Fail :" + error);
+            })
         }
+
         function checkForm() {
           const name = document.getElementsByName('name')[0].value;
           const username = document.getElementsByName('username')[0].value;

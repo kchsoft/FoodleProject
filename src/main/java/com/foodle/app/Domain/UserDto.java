@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class UserDto {
     String name;
-    int age;
     String id;
     String password;
     String email;
@@ -27,9 +26,8 @@ public class UserDto {
 
     }
 
-    public UserDto(String name, int age, String id, String password, String email, Date birthday, int user_num) {
+    public UserDto(String name, String id, String password, String email, Date birthday, int user_num) {
         this.name = name;
-        this.age = age;
         this.id = id;
         this.password = password;
         this.email = email;
@@ -43,14 +41,6 @@ public class UserDto {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getId() {
@@ -88,9 +78,4 @@ public class UserDto {
     public int getUser_num() {
         return user_num;
     }
-
-    public void setUser_num(int user_num) {
-        this.user_num = user_num;
-    }
-
 }

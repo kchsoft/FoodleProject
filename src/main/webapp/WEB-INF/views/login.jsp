@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %> <%-- jstl에서 버전 문제 발생시 , _rt가 버전 문제 해결해줌 --%>
+<%@page session="false"%>
 <!doctype html>
 <html lang="ko">
   <head>
