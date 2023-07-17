@@ -39,4 +39,8 @@ public class UserService {
         if(dbId == null) return false;
         return true;
     }
+
+    public boolean insertUserInfo(UserDto user) {
+        return 1 == userDao.insertUser(user);
+    }
 }

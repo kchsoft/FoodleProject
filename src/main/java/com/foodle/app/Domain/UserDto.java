@@ -1,38 +1,35 @@
 package com.foodle.app.Domain;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class UserDto {
     String name;
     String id;
     String password;
     String email;
-    Date birthday;
-   static int user_num = 0;
+    LocalDate birthday;
 
     UserDto() {}
 
     public UserDto(String id, String password) {
         this.id = id;
         this.password = password;
-        this.user_num++;
     }
 
     public UserDto(String name, String id, String password) {
         this.name = name;
         this.id = id;
         this.password = password;
-        this.user_num++;
 
     }
 
-    public UserDto(String name, String id, String password, String email, Date birthday, int user_num) {
+    public UserDto(String name, String id, String password, String email, LocalDate birthday) {
         this.name = name;
         this.id = id;
         this.password = password;
         this.email = email;
         this.birthday = birthday;
-        this.user_num++;
     }
 
     public String getName() {
@@ -67,15 +64,34 @@ public class UserDto {
         this.email = email;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
-    public int getUser_num() {
-        return user_num;
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday=" + birthday +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return name.equals(userDto.getName()) &&
+                id.equals(userDto.getId()) &&
+                password.equals(userDto.getPassword()) &&
+                email.equals(userDto.getEmail()) &&
+                birthday.equals(userDto.getBirthday());
     }
 }

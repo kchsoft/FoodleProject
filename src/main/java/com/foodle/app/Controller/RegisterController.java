@@ -26,23 +26,31 @@ public class RegisterController {
     @PostMapping("/register/idcheck")
     @ResponseBody
     public ResponseEntity<String> idDupCheck(@RequestBody String id){
-
         String message;
+        HttpHeaders headers = new HttpHeaders();
+        headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=utf-8");
+
         if (userService.isIdExist(id)) {
             message = "중복된 ID가 있습니다.";
         }else{
             message = "사용 가능한 ID 입니다.";
         }
-        HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=UTF-8");
-        ResponseEntity<String> entity = new ResponseEntity<String>(message, headers,HttpStatus.OK);
-        return entity;
+        return new ResponseEntity<String>(message,headers,HttpStatus.OK);
     }
 
-    @PostMapping("/register")
-    public String registerUser(UserDto user){
+    @PostMapping(value = "/register", produces = "text/plain; charset=UTF-8")
+    @ResponseBody
+    public String registerUser(@RequestBody UserDto user){
+        String message;
 
-        return "main";
+        System.out.println("user = " + user);
+        if (userService.insertUserInfo(user)) {
+            message = "회원가입에 성공하였습니다.";
+            return message;
+        } else{
+            message = "알 수 없는 이유로 회원가입에 실패하였습니다.";
+            return message;
+        }
     }
 
 }

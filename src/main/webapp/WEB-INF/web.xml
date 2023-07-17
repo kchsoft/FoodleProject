@@ -34,4 +34,23 @@
 		<session-timeout>30</session-timeout>
 	</session-config>
 
+<!--	&lt;!&ndash; 한글 변환 필터 시작 &ndash;&gt;-->
+<!--	<filter>-->
+<!--		<filter-name>encodingFilter</filter-name>-->
+<!--		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
+<!--		<init-param>-->
+<!--			<param-name>encoding</param-name>-->
+<!--			<param-value>UTF-8</param-value>-->
+<!--		</init-param>-->
+<!--		<init-param>-->
+<!--			<param-name>forceEncoding</param-name>-->
+<!--			<param-value>true</param-value>-->
+<!--		</init-param>-->
+<!--	</filter>-->
+
+<!--	<filter-mapping>-->
+<!--		<filter-name>encodingFilter</filter-name>-->
+<!--		<url-pattern>/*</url-pattern>-->
+<!--	</filter-mapping>-->
+<!--	&lt;!&ndash; 한글 변환 필터 끝 &ndash;&gt;-->
 </web-app>

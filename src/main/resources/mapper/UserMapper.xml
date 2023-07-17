@@ -22,6 +22,12 @@
         WHERE password = #{password}
     </select>
 
+    <select id="selectOneUser" parameterType="UserDto" resultType="UserDto">
+        SELECT *
+        FROM user
+        WHERE id=#{id} and password = #{password}
+    </select>
+
     <delete id="deleteOneUser" parameterType="UserDto">
         DELETE FROM user
         WHERE id = #{id} and password = #{password}
@@ -32,8 +38,9 @@
         WHERE name LIKE 'test%';
     </delete>
 
-    <insert id="insertUserInfo" parameterType="UserDto">
-        INSERT INTO user (name,age,id,password,email,birthday,user_num)
-        VALUES (#{name},#{age},#{id},#{password},#{email},#{birthday},#{user_num});
+
+    <insert id="insertUser" parameterType="UserDto">
+        INSERT INTO user (name,id,password,email,birthday)
+        VALUES (#{name},#{id},#{password},#{email},#{birthday});
     </insert>
 </mapper>

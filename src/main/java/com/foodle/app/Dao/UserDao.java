@@ -38,7 +38,11 @@ public class UserDao{
         dbSession.delete(namespace + "deleteTestUser");
     }
 
-    public int insertUserInfo(UserDto user) {
-        return dbSession.insert(namespace + "insertUserInfo", user);
+    public int insertUser(UserDto user) {
+        return dbSession.insert(namespace + "insertUser", user);
+    }
+
+    public UserDto selectOneUser(UserDto user) {
+        return dbSession.selectOne(namespace+"selectOneUser",user);
     }
 }

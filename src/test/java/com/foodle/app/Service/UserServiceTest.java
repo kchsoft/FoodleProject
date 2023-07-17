@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.LocalDate;
+
 import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,17 +19,17 @@ public class UserServiceTest {
     @Autowired
     UserDao userDao;
     @Test
-    public void isValidUserInfo() {
+    public void isValidUserInfo_Test() {
         userDao.deleteTestUser();
         String id = "test1";
         String password = "1234";
         UserDto user = new UserDto("test1",id, password);
-        assertTrue("user insert fail",userDao.insertUserInfo(user) == 1);
+        assertTrue("user insert fail",userDao.insertUser(user) == 1);
 
         String id2 = "test2";
         String password2 = "1234";
         UserDto user2 = new UserDto("test2",id2, password2);
-        assertTrue("user2 insert fail",userDao.insertUserInfo(user2) == 1);
+        assertTrue("user2 insert fail",userDao.insertUser(user2) == 1);
 
 
         assertTrue("VALID_INFO Test fail",userDao.selectOneIdPassword(user) != null);
@@ -41,5 +43,20 @@ public class UserServiceTest {
         assertTrue("NULL_INFO Test fail",
                 (userDao.selectOneId("test99") == null && userDao.selectListPassword("5678").size() == 0));
 
+    }
+
+    @Test
+    public void insertUserInfo_Test() {
+        userDao.deleteTestUser();
+        String name = "test1";
+        String id = "id";
+        String password = "password한글";
+        String email = "test@foodle.com";
+        LocalDate date = LocalDate.now();
+
+        UserDto user = new UserDto(name, id,password,email,date);
+
+        assertTrue("insertUserInfo Fail",userDao.insertUser(user) == 1);
+        // There are More specific Test in UserDaoTest , insertUser_Test()
     }
 }
