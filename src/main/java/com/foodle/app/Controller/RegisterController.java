@@ -19,7 +19,7 @@ public class RegisterController {
 
     @GetMapping("/register")
     public String registerPage(){
-        return "register";
+        return "Auth/register";
     }
 
 //    @PostMapping(value = "/register/idcheck", produces = "text/plain; charset=UTF-8")

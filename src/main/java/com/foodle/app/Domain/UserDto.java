@@ -4,11 +4,11 @@ package com.foodle.app.Domain;
 import java.time.LocalDate;
 
 public class UserDto {
-    String name;
-    String id;
-    String password;
-    String email;
-    LocalDate birthday;
+    private String name;
+    private String id;
+    private String password;
+    private String email;
+    private LocalDate birthday;
 
     UserDto() {}
 

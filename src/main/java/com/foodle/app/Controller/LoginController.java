@@ -23,7 +23,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login";
+        return "Auth/login";
     }
 // cookie
     // session
@@ -51,6 +51,6 @@ public class LoginController {
                 break;
             default:
         }
-        return "login";
+        return "Auth/login";
     }
 }

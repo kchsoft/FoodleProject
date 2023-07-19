@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class UserDao{
     private SqlSession dbSession;
-    String namespace = "com.foodle.app.Dao.UserMapper.";
+    private String namespace = "com.foodle.app.Dao.UserMapper.";
 
     @Autowired
     UserDao(SqlSession dbSession) {
