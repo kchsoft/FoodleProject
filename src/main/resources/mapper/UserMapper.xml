@@ -4,6 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.foodle.app.Dao.UserMapper">
+<!-- insert   -->
+    <insert id="insertUser" parameterType="UserDto">
+        INSERT INTO user (name,id,password,email,birthday)
+        VALUES (#{name},#{id},#{password},#{email},#{birthday});
+    </insert>
+
+<!-- select   -->
     <select id="selectOneIdPassword" parameterType="UserDto" resultType="UserDto">
         SELECT id , password
         FROM user
@@ -28,6 +35,9 @@
         WHERE id=#{id} and password = #{password}
     </select>
 
+<!-- update   -->
+
+<!-- delete   -->
     <delete id="deleteOneUser" parameterType="UserDto">
         DELETE FROM user
         WHERE id = #{id} and password = #{password}
@@ -39,8 +49,5 @@
     </delete>
 
 
-    <insert id="insertUser" parameterType="UserDto">
-        INSERT INTO user (name,id,password,email,birthday)
-        VALUES (#{name},#{id},#{password},#{email},#{birthday});
-    </insert>
+
 </mapper>
