@@ -5,25 +5,43 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserDao{
+    private SqlSession dbSession;
+    private String namespace = "com.foodle.app.Dao.UserMapper.";
+
     @Autowired
-    private SqlSession session;
-    String namespace = "com.foodle.app.Dao.UserMapper.";
+    UserDao(SqlSession dbSession) {
+        this.dbSession =dbSession;
+    }
 
     public UserDto selectOneIdPassword(UserDto userDto){
-        return session.selectOne(namespace+"selectIdPassword", userDto);
+        return dbSession.selectOne(namespace+"selectOneIdPassword", userDto);
     }
 
     public String selectOneId(String id){
-        return session.selectOne(namespace+"selectId", id);
+        return dbSession.selectOne(namespace+"selectOneId", id);
     }
 
-    public String selectOnePassword(String password){
-        return session.selectOne(namespace+"selectPassword", password);
+    public List<String> selectListPassword(String password){
+        return dbSession.selectList(namespace+"selectListPassword", password);
     }
 
-    public String getNamespace() {
-        return namespace;
+    public int deleteOneUser(UserDto user){
+        return dbSession.delete(namespace + "deleteOneUser",user);
+    }
+
+    public void deleteTestUser(){ // delete All name = "test%"
+        dbSession.delete(namespace + "deleteTestUser");
+    }
+
+    public int insertUser(UserDto user) {
+        return dbSession.insert(namespace + "insertUser", user);
+    }
+
+    public UserDto selectOneUser(UserDto user) {
+        return dbSession.selectOne(namespace + "selectOneUser", user);
     }
 }

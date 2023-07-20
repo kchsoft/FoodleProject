@@ -1,15 +1,14 @@
 package com.foodle.app.Domain;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class UserDto {
-    String name;
-    int age;
-    String id;
-    String password;
-    String email;
-    Date birthday;
-   static int user_num;
+    private String name;
+    private String id;
+    private String password;
+    private String email;
+    private LocalDate birthday;
 
     UserDto() {}
 
@@ -17,14 +16,20 @@ public class UserDto {
         this.id = id;
         this.password = password;
     }
-    public UserDto(String name, int age, String id, String password, String email, Date birthday, int user_num) {
+
+    public UserDto(String name, String id, String password) {
         this.name = name;
-        this.age = age;
+        this.id = id;
+        this.password = password;
+
+    }
+
+    public UserDto(String name, String id, String password, String email, LocalDate birthday) {
+        this.name = name;
         this.id = id;
         this.password = password;
         this.email = email;
         this.birthday = birthday;
-        this.user_num = user_num;
     }
 
     public String getName() {
@@ -33,14 +38,6 @@ public class UserDto {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getId() {
@@ -67,20 +64,34 @@ public class UserDto {
         this.email = email;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
-    public int getUser_num() {
-        return user_num;
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "name='" + name + '\'' +
+                ", id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday=" + birthday +
+                '}';
     }
 
-    public void setUser_num(int user_num) {
-        this.user_num = user_num;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        UserDto userDto = (UserDto) o;
+        return name.equals(userDto.getName()) &&
+                id.equals(userDto.getId()) &&
+                password.equals(userDto.getPassword()) &&
+                email.equals(userDto.getEmail()) &&
+                birthday.equals(userDto.getBirthday());
     }
-
 }
