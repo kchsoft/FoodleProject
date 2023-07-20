@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.foodle.app.Dao.RecipePostMapper">
+    <!--insert-->
+    <insert id="insertRecipePost" parameterType="RecipePostDto">
+        INSERT INTO recipePost (title,content,writer,view_cnt,like_cnt,comment_cnt,register_date)
+        VALUES (#{title},#{content},#{writer},#{view_cnt},#{like_cnt},#{comment_cnt},#{register_date});
+    </insert>
+
+    <!--select -->
+    <select id="selectAllPost" resultType="RecipePostDto">
+        SELECT bno,writer,title,content,view_cnt,like_cnt,register_date,up_date
+        FROM recipePost
+        order by bno desc
+  <!-- register_date 지워도 될거 같은데.. -->
+    </select>
+
+
+    <!--update-->
+
+
+
+
+
+    <!--delete-->
+
+
+</mapper>
