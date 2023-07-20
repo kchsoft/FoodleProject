@@ -28,7 +28,7 @@ public class UserService {
         List<String> dbPassword = userDao.selectListPassword(LoginUser.getPassword());
 
 //      1. Invalid
-        if(dbId != null || dbPassword.size() > 0) return INVALID_INFO;
+        if(dbId != null || dbPassword.size() >= 1) return INVALID_INFO;
 
 //      2. Null Info
         return NULL_INFO;

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.assertTrue;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 public class UserServiceTest {
@@ -23,16 +24,16 @@ public class UserServiceTest {
         userDao.deleteTestUser();
         String id = "test1";
         String password = "1234";
-        UserDto user = new UserDto("test1",id, password);
-        assertTrue("user insert fail",userDao.insertUser(user) == 1);
+        UserDto user = new UserDto("test1", id, password);
+        assertTrue("user insert fail", userDao.insertUser(user) == 1);
 
         String id2 = "test2";
         String password2 = "1234";
-        UserDto user2 = new UserDto("test2",id2, password2);
-        assertTrue("user2 insert fail",userDao.insertUser(user2) == 1);
+        UserDto user2 = new UserDto("test2", id2, password2);
+        assertTrue("user2 insert fail", userDao.insertUser(user2) == 1);
 
 
-        assertTrue("VALID_INFO Test fail",userDao.selectOneIdPassword(user) != null);
+        assertTrue("VALID_INFO Test fail", userDao.selectOneIdPassword(user) != null);
 
         assertTrue("INVALID_INFO ID Test fail",
                 (userDao.selectOneId("test99") != null || userDao.selectListPassword(password).size() > 0));
@@ -42,7 +43,6 @@ public class UserServiceTest {
 
         assertTrue("NULL_INFO Test fail",
                 (userDao.selectOneId("test99") == null && userDao.selectListPassword("5678").size() == 0));
-
     }
 
     @Test

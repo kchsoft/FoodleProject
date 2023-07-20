@@ -17,7 +17,6 @@ public class UserDao{
         this.dbSession =dbSession;
     }
 
-
     public UserDto selectOneIdPassword(UserDto userDto){
         return dbSession.selectOne(namespace+"selectOneIdPassword", userDto);
     }
@@ -43,6 +42,6 @@ public class UserDao{
     }
 
     public UserDto selectOneUser(UserDto user) {
-        return dbSession.selectOne(namespace+"selectOneUser",user);
+        return dbSession.selectOne(namespace + "selectOneUser", user);
     }
 }
