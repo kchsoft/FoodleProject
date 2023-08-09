@@ -17,15 +17,4 @@
         order by bno desc
   <!-- register_date 지워도 될거 같은데.. -->
     </select>
-
-
-    <!--update-->
-
-
-
-
-
-    <!--delete-->
-
-
 </mapper>

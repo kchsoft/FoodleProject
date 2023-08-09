@@ -23,7 +23,7 @@ public class RecipeBoardController {
     public String boardPage(Model m) {
         List<RecipePostDto> recipe = recipeBoardService.getPosts();
         m.addAttribute("recipe",recipe);
-//        m.addAttribute(recipe); -> in JSP , name is recipeBoardDtoList
+//        m.addAttribute(recipe); -> in JSP , name is recipePostDtoList
         return "RecipeBoard/recipeboard";
     }
 }

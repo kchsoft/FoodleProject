@@ -32,7 +32,7 @@
     <div class="ContentForm">
       <div class="TopContent">
         <input class="Title" type="text"  name="title"  id="title" placeholder=" 제목을 입력해 주세요."></input>
-          <button type="submit" class="btn btn-warning" id="WriteBtn" onclick="writePost()" >등록</button>
+          <button type="button" class="btn btn-warning" id="WriteBtn" onclick="writePost()" >등록</button>
         </div>
       </div>
       <textarea class="form-control Content" name="content" id="content" rows="10" cols="100" ></textarea>
@@ -49,20 +49,21 @@
 
 <script>
 
-  function writePost(){
+  function writePost(event){
     var title = document.getElementById('title').value
     var content = document.getElementById('content').value
-    console.log(title)
-    console.log(content)
 
     fetch("<c:url value='/recipepost'/>", {
       method: "POST",
-      headers: "application/sjon",
+      headers: { 'Content-Type' : "application/json"},
       body: JSON.stringify({title: title, content: content})
     })
-    .then(response => response.text())
-    .then(message => alert(message))
-    .catch(error => alert(error));
+    .then(response => {response.text()})
+    .then(message => {
+      alert(message);
+      window.location.href = "<c:url value="/recipeboard"/>";
+    })
+    .catch(error => alert("게시물 작성에 실패했습니다. : "+error));
   }
 
 </script>
