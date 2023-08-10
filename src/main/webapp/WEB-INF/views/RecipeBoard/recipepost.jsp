@@ -31,7 +31,7 @@
     <form class="ContentSubmit" action="{{url_for('board.modify_post',post_id=post.id)}}" method="post">
       <div class="ContentForm">
         <div class="TopContent">
-          <input class="Title" type="text"  name="title"  id="title" placeholder=" 제목을 입력해 주세요." value="${recipe.title}" readonly ></input>
+          <input class="Title" type="text"  name="title"  id="title" placeholder=" 제목을 입력해 주세요." value="<c:out value='${recipe.title}'/>"readonly />
           <div class="Info" >작성자: ${recipe.writer} |
             작성일: ${recipe.register_date}</div>
           <span class="Info">조회수: ${recipe.view_cnt}</span>
@@ -41,14 +41,12 @@
             <button type="submit" class="btn btn-warning" id="ModifyRegisterBtn" onclick="modifyButtons()" style="display: none;">등록</button>
           </div>
         </div>
-        <textarea class="form-control Content" name="content" id="content" rows="10" cols="100"  readonly>${recipe.content}</textarea>
+        <textarea class="form-control Content" name="content" id="content" rows="10" cols="100"  readonly><c:out value='${recipe.content}'/></textarea>
       </div>
     </form>
 
     <div class="FtnBtn">
-      <form action="{{ url_for('board.delete_post',post_id=post.id,page=page,per_page=per_page,option=option,keyword=keyword) }}" method="POST" id="DeleteBtn" >
-        <button type="button" class="btn btn-warning" onclick="confirmDelete()">삭제</button>
-      </form>
+      <button type="button" class="btn btn-warning" id="DeleteBtn" onclick="confirmDelete()">삭제</button>
 
       <form method="post" id="likebtn">
         <button type="submit" class="btn btn-warning">좋아요</button>
@@ -62,12 +60,26 @@
 
 
 <script>
-
-function confirmDelete() {
-        if (confirm("삭제하시겠습니까?")) {
-          $("#DeleteBtn").submit();
-        }
-      }
+<%--  <c:if test="${message ne null}">--%>
+<%--  alert(${message});--%>
+<%--  </c:if>--%>
+  function confirmDelete() {
+    var status
+    if (confirm("삭제하시겠습니까?")) {
+        fetch("<c:url value='/recipepost/${recipe.bno}'/>",{
+          method : "DELETE"
+        })
+        .then(response => {
+          status = response.status
+          return response.text()
+        })
+        .then(message => {
+          alert(message)
+          if(status == 200 ) window.location.href= "<c:url value='/recipeboard'/>"
+        })
+        .catch(error => alert(error))
+    }
+  }
 
       $(document).ready(function() {
 

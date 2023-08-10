@@ -23,4 +23,12 @@
         FROM recipePost
         where bno = #{bno}
     </select>
+
+<!-- update   -->
+
+<!-- delete   -->
+    <delete id="deleteOnePost" parameterType="int">
+        DELETE FROM recipePost
+        Where bno = #{bno}
+    </delete>
 </mapper>

@@ -30,4 +30,8 @@ public class RecipePostDao {
     public RecipePostDto selectOnePost(int bno) {
         return dbsession.selectOne(namespace + "selectOnePost", bno);
     }
+
+    public int deleteOnePost(int bno) {
+        return dbsession.delete(namespace + "deleteOnePost", bno);
+    }
 }

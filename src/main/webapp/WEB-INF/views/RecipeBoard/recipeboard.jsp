@@ -81,7 +81,7 @@
         <td class="PostWriter">${postDto.writer}</td>
           <td class="PostTitle">
             <a href="<c:url value='/recipepost/${postDto.bno}'/> ">
-            ${postDto.title}
+            <c:out value='${postDto.title}'/>
             </a> 
           </td>
             <td class="PostView">${postDto.view_cnt}</td>
@@ -140,6 +140,12 @@
 
 </div>
 </body>
+
+<script>
+  <c:if test="${message ne null}">
+    alert(${message});
+  </c:if>
+</script>
 </html>    
     
     
