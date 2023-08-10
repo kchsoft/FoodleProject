@@ -58,7 +58,7 @@
       headers: { 'Content-Type' : "application/json"},
       body: JSON.stringify({title: title, content: content})
     })
-    .then(response => {response.text()})
+    .then(response => response.text())
     .then(message => {
       alert(message);
       window.location.href = "<c:url value="/recipeboard"/>";

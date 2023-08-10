@@ -17,4 +17,10 @@
         order by bno desc
   <!-- register_date 지워도 될거 같은데.. -->
     </select>
+
+    <select id="selectOnePost" parameterType="int" resultType="RecipePostDto">
+        SELECT *
+        FROM recipePost
+        where bno = #{bno}
+    </select>
 </mapper>

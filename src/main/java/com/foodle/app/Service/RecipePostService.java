@@ -7,15 +7,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RecipePostService {
-    final private RecipePostDao PostDao;
+    final private RecipePostDao postDao;
 
     @Autowired
     public RecipePostService(RecipePostDao dao) {
-        this.PostDao = dao;
+        this.postDao = dao;
     }
 
     public int writePost(RecipePostDto recipePostDto) {
-        return PostDao.insertPost(recipePostDto);
+        return postDao.insertPost(recipePostDto);
     }
 
+    public RecipePostDto getOnePost(int bno) {
+        return postDao.selectOnePost(bno);
+    }
 }

@@ -11,18 +11,18 @@
    rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
    <!-- CSS -->
-   <link rel="stylesheet" href="static/topbar.css">
-   <link rel="stylesheet" href="static/post.css">
+   <link rel="stylesheet" href="<c:url value='/css/recipeboard/topbar.css'/>">
+   <link rel="stylesheet" href="<c:url value='/css/recipeboard/recipepost.css'/>">
 
 
    <!-- Top Bar -->
-   <title>{{ post.title }}</title>
+   <title>${recipe.title}</title>
   </head>
   <body>
     <div id="Topbar" class="Tobar">
       <ul class="Topul">
-        <a href="/home"class="Topa" id="init">Foodle</a>
-        <a href="{{ url_for('board.list_post') }}" class="Topa" id="mainpage">Welcome to Recipe!</a>
+        <a href="<c:url value='/'/> "class="Topa" id="init">Foodle</a>
+        <a href="<c:url value='/recipeboard'/> " class="Topa" id="boardpage">Welcome to Recipe!</a>
       </ul>
     </div>
 
@@ -31,17 +31,17 @@
     <form class="ContentSubmit" action="{{url_for('board.modify_post',post_id=post.id)}}" method="post">
       <div class="ContentForm">
         <div class="TopContent">
-          <input class="Title" type="text"  name="title"  id="title" placeholder=" 제목을 입력해 주세요." value="{{ post.title }}" readonly ></input>
-          <div class="Info" >작성자: {{ post.author }} | 
-            작성일: {{ post.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
-          <span class="Info">조회수: {{ post.view }}</span>
+          <input class="Title" type="text"  name="title"  id="title" placeholder=" 제목을 입력해 주세요." value="${recipe.title}" readonly ></input>
+          <div class="Info" >작성자: ${recipe.writer} |
+            작성일: ${recipe.register_date}</div>
+          <span class="Info">조회수: ${recipe.view_cnt}</span>
           <div class="LikeModify">
-            <span class="Info" id="like">좋아요: {{ post.like }}</span>
+            <span class="Info" id="like">좋아요: ${recipe.like_cnt}</span>
             <button type="button" class="btn btn-warning" id="ModifyBtn" onclick="modifyButtons()">수정</button>
             <button type="submit" class="btn btn-warning" id="ModifyRegisterBtn" onclick="modifyButtons()" style="display: none;">등록</button>
           </div>
         </div>
-        <textarea class="form-control Content" name="content" id="content" rows="10" cols="100"  readonly>{{ post.content }}</textarea>
+        <textarea class="form-control Content" name="content" id="content" rows="10" cols="100"  readonly>${recipe.content}</textarea>
       </div>
     </form>
 

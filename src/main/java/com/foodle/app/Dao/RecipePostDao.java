@@ -26,4 +26,8 @@ public class RecipePostDao {
     public int insertPost(RecipePostDto recipePostDto) {
         return dbsession.insert(namespace + "insertRecipePost", recipePostDto);
     }
+
+    public RecipePostDto selectOnePost(int bno) {
+        return dbsession.selectOne(namespace + "selectOnePost", bno);
+    }
 }

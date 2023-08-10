@@ -80,7 +80,7 @@
         <th scope="row" class="PostId">${postDto.bno}</th>
         <td class="PostWriter">${postDto.writer}</td>
           <td class="PostTitle">
-            <a href="">
+            <a href="<c:url value='/recipepost/${postDto.bno}'/> ">
             ${postDto.title}
             </a> 
           </td>
