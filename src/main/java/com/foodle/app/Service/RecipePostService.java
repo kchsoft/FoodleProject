@@ -14,8 +14,8 @@ public class RecipePostService {
         this.postDao = dao;
     }
 
-    public int writePost(RecipePostDto recipePostDto) {
-        return postDao.insertPost(recipePostDto);
+    public int writePost(RecipePostDto post) {
+        return postDao.insertPost(post);
     }
 
     public RecipePostDto getOnePost(int bno) {
@@ -29,5 +29,9 @@ public class RecipePostService {
 
     public int deleteOnePost(int bno) {
         return postDao.deleteOnePost(bno);
+    }
+
+    public int modifyOnePost(RecipePostDto post) {
+        return postDao.updateOnePost(post);
     }
 }

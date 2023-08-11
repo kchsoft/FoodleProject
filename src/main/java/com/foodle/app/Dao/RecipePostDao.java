@@ -34,4 +34,8 @@ public class RecipePostDao {
     public int deleteOnePost(int bno) {
         return dbsession.delete(namespace + "deleteOnePost", bno);
     }
+
+    public int updateOnePost(RecipePostDto recipePostDto) {
+        return dbsession.update(namespace + "updateOnePost", recipePostDto);
+    }
 }

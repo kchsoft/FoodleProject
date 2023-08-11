@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,8 +38,7 @@ public class RecipePostController {
 
     @PostMapping(value = "/recipepost", produces = "text/plain; charset=UTF-8")
     @ResponseBody
-    public String writePost(@RequestBody RecipePostDto recipePostDto, HttpServletRequest request){
-        HttpSession session = request.getSession(false);
+    public String writePost(@RequestBody RecipePostDto recipePostDto, HttpSession session){
         recipePostDto.setWriter((String)session.getAttribute("id"));
         recipePostDto.setRegister_date(LocalDateTime.now());
 
@@ -54,16 +52,14 @@ public class RecipePostController {
 
     @ResponseBody
     @DeleteMapping(value = "/recipepost/{bno}",produces = "text/plain; charset=utf-8")
-    public ResponseEntity<String> deletePost(@PathVariable int bno, HttpServletRequest request, RedirectAttributes rattr){
+    public ResponseEntity<String> deletePost(@PathVariable int bno, HttpSession session){
         // get user name
-        HttpSession session = request.getSession();
         String userName = (String)session.getAttribute("id");
 
         // set header
         HttpHeaders header = new HttpHeaders();
         header.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=utf-8");
 
-        String message;
         if(postService.isUserEqualWriter(userName, bno)) {
             if(1 == postService.deleteOnePost(bno)) // User == Writer
                 return new ResponseEntity<String>("삭제가 완료되었습니다.",header, HttpStatus.OK); // Success 200
@@ -72,5 +68,26 @@ public class RecipePostController {
         }
         else // User != Writer
             return new ResponseEntity<String>("해당 게시물을 작성한 사람만 삭제할 수 있습니다.",header, HttpStatus.FORBIDDEN); // 403
+    }
+
+    @ResponseBody
+    @PutMapping("/recipepost/{bno}")
+    public ResponseEntity<String> modifyPost(@PathVariable int bno , @RequestBody RecipePostDto post,HttpServletRequest request){
+        // get user name
+        HttpSession session = request.getSession();
+        String userName = (String)session.getAttribute("id");
+
+        // set header
+        HttpHeaders header = new HttpHeaders();
+        header.set(HttpHeaders.CONTENT_TYPE, "text/plain; charset=utf-8");
+
+        if(postService.isUserEqualWriter(userName, bno)){
+            if(1 == postService.modifyOnePost(post)) // User == Writer
+                return new ResponseEntity<String>("수정이 완료되었습니다.", header, HttpStatus.OK); // Success 200
+            else
+                return new ResponseEntity<String>("수정에 실패했습니다.", header, HttpStatus.INTERNAL_SERVER_ERROR); //Fail 500
+        }
+        else // User != Writer 403
+            return new ResponseEntity<String>("해당 게시물을 작성한 사람만 수정할 수 있습니다.", header, HttpStatus.FORBIDDEN);
     }
 }

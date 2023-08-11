@@ -25,7 +25,11 @@
     </select>
 
 <!-- update   -->
-
+    <update id="updateOnePost" parameterType="RecipePostDto">
+        UPDATE recipePost
+        SET title = #{title} , content = #{content}
+        WHERE bno = #{bno};
+    </update>
 <!-- delete   -->
     <delete id="deleteOnePost" parameterType="int">
         DELETE FROM recipePost
