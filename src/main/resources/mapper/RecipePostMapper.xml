@@ -6,13 +6,13 @@
 <mapper namespace="com.foodle.app.Dao.RecipePostMapper">
     <!--insert-->
     <insert id="insertRecipePost" parameterType="RecipePostDto">
-        INSERT INTO recipePost (title,content,writer,view_cnt,like_cnt,comment_cnt,register_date)
-        VALUES (#{title},#{content},#{writer},#{view_cnt},#{like_cnt},#{comment_cnt},#{register_date});
+        INSERT INTO recipePost (title,content,writer_id,view_cnt,like_cnt,comment_cnt,register_date)
+        VALUES (#{title},#{content},#{writer_id},#{view_cnt},#{like_cnt},#{comment_cnt},#{register_date});
     </insert>
 
     <!--select -->
     <select id="selectAllPost" resultType="RecipePostDto">
-        SELECT bno,writer,title,content,view_cnt,like_cnt,register_date,up_date
+        SELECT bno,writer_id,title,content,view_cnt,like_cnt,register_date,up_date
         FROM recipePost
         order by bno desc
   <!-- register_date 지워도 될거 같은데.. -->
@@ -24,12 +24,33 @@
         where bno = #{bno}
     </select>
 
+    <select id="selectPostLikeCount" parameterType="int" resultType="int">
+        SELECT like_cnt
+        FROM recipePost
+        WHERE bno = #{bno}
+    </select>
+
 <!-- update   -->
     <update id="updateOnePost" parameterType="RecipePostDto">
         UPDATE recipePost
         SET title = #{title} , content = #{content}
         WHERE bno = #{bno};
     </update>
+
+    <update id="plusOneLike" parameterType="int">
+        UPDATE recipePost
+        SET like_cnt = like_cnt + 1
+        WHERE bno = #{bno}
+    </update>
+
+    <update id="minusOneLike" parameterType="int">
+        UPDATE recipePost
+        SET like_cnt = like_cnt - 1
+        WHERE bno = #{bno}
+    </update>
+
+
+
 <!-- delete   -->
     <delete id="deleteOnePost" parameterType="int">
         DELETE FROM recipePost

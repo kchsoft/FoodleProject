@@ -1,5 +1,6 @@
 package com.foodle.app.Controller;
 
+import com.foodle.app.Domain.RecipeLikeDto;
 import com.foodle.app.Domain.RecipePostDto;
 import com.foodle.app.Service.RecipePostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,4 +91,21 @@ public class RecipePostController {
         else // User != Writer 403
             return new ResponseEntity<String>("해당 게시물을 작성한 사람만 수정할 수 있습니다.", header, HttpStatus.FORBIDDEN);
     }
+
+    @GetMapping(value = "/recipepost/{bno}/like")
+    @ResponseBody
+    public ResponseEntity<Integer> clickLike(@PathVariable int bno,HttpSession session){
+        String user_id = session.getAttribute("id").toString();
+        RecipeLikeDto likeDto = new RecipeLikeDto(bno, user_id);
+
+        if (postService.isLikeExist(likeDto)) { // is already like?
+            postService.decraseLike(likeDto); // yes -> decrease
+        }
+        else
+            postService.increaseLike(likeDto); // no -> increase
+
+        return new ResponseEntity<>(postService.getPostLikeCount(bno),HttpStatus.OK);
+    }
+
+
 }

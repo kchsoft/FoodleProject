@@ -23,8 +23,8 @@ public class RecipePostDao {
         return dbsession.selectList(namespace + "selectAllPost");
     }
 
-    public int insertPost(RecipePostDto recipePostDto) {
-        return dbsession.insert(namespace + "insertRecipePost", recipePostDto);
+    public int insertPost(RecipePostDto postDto) {
+        return dbsession.insert(namespace + "insertRecipePost", postDto);
     }
 
     public RecipePostDto selectOnePost(int bno) {
@@ -35,7 +35,17 @@ public class RecipePostDao {
         return dbsession.delete(namespace + "deleteOnePost", bno);
     }
 
-    public int updateOnePost(RecipePostDto recipePostDto) {
-        return dbsession.update(namespace + "updateOnePost", recipePostDto);
+    public int updateOnePost(RecipePostDto postDto) {
+        return dbsession.update(namespace + "updateOnePost", postDto);
     }
+
+    public int plusOneLike(int bno) {
+        return dbsession.update(namespace + "plusOneLike",bno);
+    }
+
+    public int minusOneLike(int bno) {
+        return dbsession.delete(namespace + "minusOneLike", bno);
+    }
+
+    public int selectPostLikeCount(int bno) {return dbsession.selectOne(namespace + "selectPostLikeCount", bno); }
 }

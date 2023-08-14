@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.foodle.app.Dao.RecipeLikeMapper">
+<!-- insert -->
+    <insert id="insertLike" parameterType="RecipeLikeDto">
+        INSERT INTO recipelike
+        VALUES (#{bno},#{user_id})
+    </insert>
+
+<!-- select   -->
+    <select id="selectOneLike" parameterType="RecipeLikeDto" resultType="RecipeLikeDto">
+        SELECT bno, user_id
+        FROM recipelike
+        WHERE bno = #{bno} and user_id = #{user_id}
+    </select>
+
+<!-- update   -->
+
+<!-- delete   -->
+    <delete id="deleteLike" parameterType="RecipeLikeDto">
+        DELETE FROM recipelike
+        WHERE bno = #{bno} and user_id = #{user_id}
+
+    </delete>
+
+</mapper>

@@ -50,9 +50,7 @@
       <button type="button" class="btn btn-warning" id="DeleteBtn" onclick="confirmDelete()">삭제</button>
       </c:if>
 
-      <form method="post" id="likebtn">
-        <button type="submit" class="btn btn-warning">좋아요</button>
-      </form>
+      <button type="submit" id="LikeBtn" class="btn btn-warning">좋아요</button>
 
       <a href="{{ url_for('board.list_post',page=page,per_page=per_page,option=option,keyword=keyword) }}">
         목록
@@ -62,7 +60,21 @@
 
 
 <script>
+<c:if test="${sessionScope.id eq recipe.writer}">
   document.getElementById("ModifyRegisterBtn").addEventListener("click",sendModified)
+</c:if>
+  document.getElementById("LikeBtn").addEventListener("click", sendLike);
+
+  function sendLike() {
+    var like = document.getElementById("like")
+
+    fetch("<c:url value='/recipepost/${recipe.bno}/like'/>", {
+      method: "GET",
+    })
+    .then(response => response.json())
+    .then(likeCount => like.innerHTML = "좋아요: "+likeCount)
+    .catch(err => alert(err))
+}
 
   function confirmDelete() {
     var status

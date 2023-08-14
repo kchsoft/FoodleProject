@@ -6,7 +6,7 @@ public class RecipePostDto {
     private int bno;
     private String title;
     private String content;
-    private String writer;
+    private String writer_id;
     private int view_cnt;
     private int comment_cnt;
     private int like_cnt;
@@ -16,10 +16,10 @@ public class RecipePostDto {
 
     public RecipePostDto(){}
 
-    public RecipePostDto(String title, String content, String writer) {
+    public RecipePostDto(String title, String content, String writer_id) {
         this.title = title;
         this.content = content;
-        this.writer = writer;
+        this.writer_id = writer_id;
 
         this.view_cnt = 0;
         this.comment_cnt = 0;
@@ -52,11 +52,11 @@ public class RecipePostDto {
     }
 
     public String getWriter() {
-        return writer;
+        return writer_id;
     }
 
-    public void setWriter(String writer) {
-        this.writer = writer;
+    public void setWriter(String writer_id) {
+        this.writer_id = writer_id;
     }
 
     public int getView_cnt() {
@@ -105,7 +105,7 @@ public class RecipePostDto {
                 "bno=" + bno +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", writer='" + writer + '\'' +
+                ", writer_id='" + writer_id + '\'' +
                 ", view_cnt=" + view_cnt +
                 ", comment_cnt=" + comment_cnt +
                 ", like_cnt=" + like_cnt +
