@@ -1,5 +1,6 @@
 package com.foodle.app.Controller;
 
+import com.foodle.app.Domain.PageInfo;
 import com.foodle.app.Domain.RecipeLikeDto;
 import com.foodle.app.Domain.RecipePostDto;
 import com.foodle.app.Service.RecipePostService;
@@ -31,9 +32,10 @@ public class RecipePostController {
     }
 
     @GetMapping("/recipepost/{bno}")
-    public String postShowPage(@PathVariable int bno, Model m){
+    public String postShowPage(@PathVariable int bno , PageInfo pageInfo , Model m){
         RecipePostDto recipe = postService.getOnePost(bno);
         m.addAttribute("recipe", recipe);
+        m.addAttribute("pi", pageInfo);
         return "RecipeBoard/recipepost";
     }
 

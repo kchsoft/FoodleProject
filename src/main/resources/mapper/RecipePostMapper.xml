@@ -30,6 +30,17 @@
         WHERE bno = #{bno}
     </select>
 
+    <select id="selectTotalPageCnt" resultType="int">
+        SELECT COUNT(bno)
+        FROM recipePost
+    </select>
+
+    <select id="selectPosts" parameterType="PageInfo" resultType="RecipePostDto">
+        SELECT *
+        FROM recipePost
+        LIMIT #{pageBundle} OFFSET #{offset}
+    </select>
+
 <!-- update   -->
     <update id="updateOnePost" parameterType="RecipePostDto">
         UPDATE recipePost

@@ -7,5 +7,6 @@
         <typeAlias alias="UserDto" type="com.foodle.app.Domain.UserDto"/>
         <typeAlias alias="RecipePostDto" type="com.foodle.app.Domain.RecipePostDto"/>
         <typeAlias alias="RecipeLikeDto" type="com.foodle.app.Domain.RecipeLikeDto"/>
+        <typeAlias alias="PageInfo" type="com.foodle.app.Domain.PageInfo"/>
     </typeAliases>
 </configuration>
