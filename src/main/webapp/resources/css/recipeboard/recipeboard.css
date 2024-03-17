@@ -1,0 +1,62 @@
+.PostInfo{
+  display: grid;
+  grid-template-columns: 2fr 2fr 6fr 1fr 1fr 2fr;
+  justify-content: center;
+  text-align: center;
+}
+
+.PostId{
+  grid-column: 1/1;
+  text-align :center
+}
+
+.PostWriter{
+  grid-column: 2/2;
+  text-align :center
+}
+
+.PostTitle{
+  grid-column: 3/3;
+  text-align :center
+}
+
+.PostView{
+  grid-column: 4/4;
+}
+
+.PostLike{
+  grid-column: 5/5;
+}
+
+.PostTime{
+  grid-column: 6/6;
+}
+
+.Post-Container{
+  display: grid;
+  justify-items: center;
+}
+
+.input-group {
+  width: 60%;
+}
+
+.WriteRanking{
+  display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.page-link {
+  color : rgb(245, 200, 124);
+}
+
+.page-item.active .page-link {
+    background-color: rgb(245, 200, 124);
+    border-color: rgb(245, 200, 124);
+}
+.per_page{
+  display: flex;
+  margin-top: 10px;
+}

@@ -6,7 +6,7 @@
 <mapper namespace="com.foodle.app.Dao.UserMapper">
 
 <!-- insert   -->
-    <insert id="insertUser" parameterType="UserDto">
+    <insert id="insertOneUser" parameterType="UserDto">
         INSERT INTO user (name,id,password,email,birthday)
         VALUES (#{name},#{id},#{password},#{email},#{birthday});
     </insert>
@@ -18,13 +18,13 @@
         where id = #{id} and password = #{password}
     </select>
 
-    <select id="selectId" parameterType="String" resultType="String">
+    <select id="selectOneId" parameterType="String" resultType="String">
         SELECT id
         from user
         where id = #{id}
     </select>
 
-    <select id="selectPassword" parameterType="String" resultType="String">
+    <select id="selectListPassword" parameterType="String" resultType="String">
         SELECT password
         from user
         where password = #{password}

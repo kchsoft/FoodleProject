@@ -38,7 +38,7 @@ public class UserDao{
     }
 
     public int insertUser(UserDto user) {
-        return dbSession.insert(namespace + "insertUser", user);
+        return dbSession.insert(namespace + "insertOneUser", user);
     }
 
     public UserDto selectOneUser(UserDto user) {
