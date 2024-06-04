@@ -22,7 +22,7 @@ public class UserDao{
     }
 
     public String selectOneId(String id){
-        return dbSession.selectOne(namespace+"selectOneId", id);
+        return dbSession.selectOne(namespace+"selectId", id);
     }
 
     public List<String> selectListPassword(String password){
